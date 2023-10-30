@@ -5,46 +5,107 @@ function getComputerChoice() {
     return choice;
 }
 
-const playerSelection = prompt("Enter ")
-const computerSelection = getComputerChoice();
+let computerSelection = getComputerChoice();
 console.log(computerSelection)
 
-function oneRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    if (playerSelection === "rock") {
-        if (computerSelection === "Scissors") {
-            console.log("You win! (R vs S)")
-        }
-        else if (computerSelection === "Paper") {
-            console.log("I Won! (R vs P)")
-        }
-        else {
-            console.log("Tie (R v R)")
-        }
-    }
-    if (playerSelection === "scissors") {
-        if (computerSelection === "Paper") {
-            console.log("You win! (S vs P)")
-        }
-        else if (computerSelection === "Rock") {
-            console.log("I Won! (S vs R)")
-        }
-        else {
-            console.log("Tie (S v S)")
-        }
-    }
-    if (playerSelection === "paper") {
-        if (computerSelection === "Rock") {
-            console.log("You win! (P vs R)")
-        }
-        else if (computerSelection === "Scissors") {
-            console.log("I Won! (P vs S)")
-        }
-        else {
-            console.log("Tie (P v P)")
-        }
-    }
+
+let userChoice = ""
+let playerScore = 0;
+let computerScore = 0;
+let whoWon = ""
+let gameOver = false
+
+
+document.querySelector("#Rock").onclick = function() {
+    userChoice = "Rock"
+}
+document.querySelector("#Paper").onclick = function() {
+    userChoice = "Paper"
+}
+document.querySelector("#Scissors").onclick = function() {
+    userChoice = "Scissors"
 }
 
+const scoreScore = document.getElementById("scoreScore")
+const scoreInfo = document.getElementById("scoreInfo")
 
-oneRound(playerSelection, computerSelection)
+
+document.querySelector("#Rock").onclick = function() {
+    userChoice = "Rock"
+}
+document.querySelector("#Paper").onclick = function() {
+    userChoice = "Paper"
+}
+document.querySelector("#Scissors").onclick = function() {
+    userChoice = "Scissors"
+}
+
+const btnn = document.querySelector(".buttons")
+
+btnn.addEventListener("click", function() {
+    if (!gameOver && playerScore < 5 && computerScore < 5) {
+        computerSelection = getComputerChoice();
+        oneRound();
+
+        if (playerScore >= 5) {
+            gameOver = true;
+            scoreInfo.innerHTML = "Player won the game!"
+        } else if (computerScore >= 5) {
+            gameOver = true;
+            scoreInfo.innerHTML = "Computer won the game!"
+        }
+
+
+}});
+
+
+        
+        
+        
+function oneRound() {
+    if (!gameOver) {
+    switch (true) {
+        case (computerSelection === "Rock"):
+            if (userChoice === "Paper") {
+                playerScore += 1
+                whoWon = "Player"
+                console.log(playerScore)
+            } else if (userChoice === "Scissors") {
+                computerScore += 1
+                whoWon = "Computer"
+                console.log(computerScore)
+            } else {
+                whoWon = "No one"
+            }
+            break;
+        case (computerSelection === "Paper"):
+            if (userChoice === "Scissors") {
+                playerScore += 1
+                whoWon = "Player"
+                console.log(playerScore)
+            } else if (userChoice === "Rock") {
+                computerScore += 1
+                whoWon = "Computer"
+                console.log(computerScore)
+            } else {
+                whoWon = "No one"
+            }
+            break;
+        case (computerSelection === "Scissors"):
+            if (userChoice === "Rock") {
+                playerScore += 1
+                whoWon = "Player"
+                console.log(playerScore)
+            } else if (userChoice === "Paper") {
+                computerScore += 1
+                whoWon = "Computer"
+                console.log(computerScore)
+            } else {
+                whoWon = "No one"
+            }
+            break;
+    }
+scoreScore.innerHTML = `${playerScore} : ${computerScore}`
+scoreInfo.innerHTML = `${whoWon} won`
+
+}}

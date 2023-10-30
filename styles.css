@@ -1,0 +1,26 @@
+header {
+    text-align: center;
+    font-size: 80px;
+}
+
+.btn {
+    font-size: 50px;
+    margin-top: 50px;
+    
+}
+
+.buttons {
+
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.score {
+    text-align: center;
+    font-size: 50px;
+}
+
+#scoreInfo {
+    font-size: 40px;
+}
